@@ -1,16 +1,25 @@
 package com.example.demo;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @RestController
 public class GameController {
-    @GetMapping("/uuid")
-    public String createGame(@RequestBody GameCreationParams params) {
-        // TODO - actually create a new game
-        return UUID.randomUUID().toString();
+    @Autowired
+    private GameService gameService = new GameServiceImpl();
+    @GetMapping("/identifiers")
+    public void getGameIdentifiers(){
+        gameService.getGameIdentifiers();
+    }
+    @PostMapping("/games")
+    public GameCreateDTO createGame(@RequestBody GameCreationParams params) throws Exception {
+        return gameService.createGame(params);
+    }
+    @GetMapping("/games/{gameId}")
+    public GameCreateDTO getGame(@PathVariable UUID gameId) {
+    // TODO - actually get and return game with id 'gameId'
+        return gameService.getGame(gameId);
     }
 }

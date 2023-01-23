@@ -1,12 +1,12 @@
 package com.example.demo;
-
-public class GameCreationParams {
-    String typeOfGame;
-    int playerCount;
-    int boardSize;
-    public void GameCreationParams(String typeOfGame, int playerCount, int boardSize){
-        this.typeOfGame = typeOfGame;
-        this.playerCount = playerCount;
-        this.boardSize = boardSize;
+public record GameCreationParams(String typeOfGame, int playerCount, int boardSize){
+    public String getType() {
+        return typeOfGame;
+    }
+    public int getNbPlayers() {
+        return playerCount;
+    }
+    public int getSizeBoard() {
+        return boardSize;
     }
 }
