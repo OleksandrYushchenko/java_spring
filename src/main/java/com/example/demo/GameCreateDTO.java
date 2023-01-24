@@ -1,17 +1,33 @@
 package com.example.demo;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import fr.le_campus_numerique.square_games.engine.Game;
 
 import java.util.UUID;
 
 public class GameCreateDTO {
-    @JsonProperty
     private UUID id;
-    @JsonProperty
-    private Game game;
-    public GameCreateDTO(UUID id, Game game){
+    private String paramsOfGame;
+    private String factoryId;
+    private String gameNameInUserLanguage;
+
+    public GameCreateDTO(UUID id, Game game, String isDefault){
+        this.paramsOfGame = isDefault;
         this.id = id;
-        this.game = game;
+        this.factoryId = game.getFactoryId();
+    }
+    public void setGameNameInUserLanguage(String gameNameInUserLanguage) {
+        this.gameNameInUserLanguage = gameNameInUserLanguage;
+    }
+    public UUID getId() {
+        return id;
+    }
+    public String getParamsOfGame() {
+        return paramsOfGame;
+    }
+    public String getFactoryId() {
+        return factoryId;
+    }
+    public String getGameNameInUserLanguage() {
+        return gameNameInUserLanguage;
     }
 }

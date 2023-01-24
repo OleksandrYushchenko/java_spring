@@ -8,14 +8,15 @@ import java.util.UUID;
 @RestController
 public class GameController {
     @Autowired
-    private GameService gameService = new GameServiceImpl();
+    private GameService gameService;
     @GetMapping("/identifiers")
     public void getGameIdentifiers(){
         gameService.getGameIdentifiers();
     }
     @PostMapping("/games")
     public GameCreateDTO createGame(@RequestBody GameCreationParams params) throws Exception {
-        return gameService.createGame(params);
+        GameCreateDTO gameCreateDTO = gameService.createGame(params);
+        return gameCreateDTO;
     }
     @GetMapping("/games/{gameId}")
     public GameCreateDTO getGame(@PathVariable UUID gameId) {

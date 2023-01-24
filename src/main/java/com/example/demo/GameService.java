@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
 
 public interface GameService {
