@@ -1,12 +1,14 @@
-package com.example.demo;
+package com.example.demo.plugin;
 
 import fr.le_campus_numerique.square_games.engine.GameFactory;
+import jakarta.annotation.Nonnull;
+import org.springframework.lang.NonNull;
 
 import java.util.Locale;
 
 public interface GamePlugin{
     String getName(Locale locale);
-    GameFactory getGameFactory();
+    @NonNull GameFactory getGameFactory();
     int getDefaultPlayerNb();
     int getDefaultBoardSize();
 }

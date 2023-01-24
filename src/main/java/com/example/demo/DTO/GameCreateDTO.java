@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.DTO;
 
 import fr.le_campus_numerique.square_games.engine.Game;
 
@@ -8,16 +8,21 @@ public class GameCreateDTO {
     private UUID id;
     private String paramsOfGame;
     private String factoryId;
-    private String gameNameInUserLanguage;
+    private String userLanguage;
+    private String gameName;
 
     public GameCreateDTO(UUID id, Game game, String isDefault){
         this.paramsOfGame = isDefault;
         this.id = id;
         this.factoryId = game.getFactoryId();
     }
-    public void setGameNameInUserLanguage(String gameNameInUserLanguage) {
-        this.gameNameInUserLanguage = gameNameInUserLanguage;
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
     }
+    public void setUserLanguage(String userLanguage){
+        this.userLanguage = userLanguage;
+    }
+    public String getUserLanguage() { return userLanguage; }
     public UUID getId() {
         return id;
     }
@@ -27,7 +32,7 @@ public class GameCreateDTO {
     public String getFactoryId() {
         return factoryId;
     }
-    public String getGameNameInUserLanguage() {
-        return gameNameInUserLanguage;
+    public String getGameName() {
+        return gameName;
     }
 }

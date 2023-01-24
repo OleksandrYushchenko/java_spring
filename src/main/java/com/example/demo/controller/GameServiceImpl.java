@@ -1,5 +1,8 @@
-package com.example.demo;
+package com.example.demo.controller;
 
+import com.example.demo.DTO.GameCreateDTO;
+import com.example.demo.params.GameCreationParams;
+import com.example.demo.plugin.GamePlugin;
 import fr.le_campus_numerique.square_games.engine.Game;
 
 import fr.le_campus_numerique.square_games.engine.tictactoe.TicTacToeGameFactory;
@@ -12,11 +15,7 @@ import java.util.*;
 @Service
 public class GameServiceImpl implements GameService{
     @Autowired
-    private TicTacToePlugin ticTacToePlugin;
-    @Autowired
-    private TaquinPlugin taquinPlugin;
-    @Autowired
-    private ConnectFourPlugin connectFourPlugin;
+    private List<GamePlugin> gamePlugins;
     private final Map<UUID, GameCreateDTO> listOfGames = new HashMap<>();
     @Override
     public Collection<String> getGameIdentifiers() {
@@ -25,23 +24,34 @@ public class GameServiceImpl implements GameService{
     }
     @Override
     public GameCreateDTO createGame(GameCreationParams params) throws Exception {
-        GamePlugin gamePlugin = null;
-        switch (params.typeOfGame()) {
-            case "tictactoe" -> gamePlugin = ticTacToePlugin;
-            case "15 puzzle" -> gamePlugin = taquinPlugin;
-            case "connect4" -> gamePlugin = connectFourPlugin;
-            default -> throw new Exception("Incorrect choise!!!");
-        };
+        // Choosing game plugin in depending of params.typeOfGame
+        GamePlugin gamePlugin = gamePlugins.stream()
+                .filter(pl -> pl.getGameFactory().getGameId().equals(params.typeOfGame()))
+                .findFirst()
+                .orElse(null);
+        // Creating game (with user params OR default)
         Game game = params.playerCount() == 0 || params.boardSize() == 0
+                // default params
                 ? gamePlugin.getGameFactory().createGame(gamePlugin.getDefaultPlayerNb(), gamePlugin.getDefaultBoardSize())
+                // user params
                 : gamePlugin.getGameFactory().createGame(params.playerCount(), params.boardSize());
+
         UUID id = UUID.randomUUID();
+
         GameCreateDTO newGame = new GameCreateDTO(id, game, params.playerCount() == 0 || params.boardSize() == 0 ? "default" : "entered by user");
-        if (params.language() != null) {
-            newGame.setGameNameInUserLanguage(gamePlugin.getName(Locale.of(params.language())));
-        } else {
-            newGame.setGameNameInUserLanguage("language not selected in EN " + newGame.getFactoryId());
-        }
+        // Setter Name (translation)
+        newGame.setGameName(
+                params.language() != null
+                    ? gamePlugin.getName(Locale.of(params.language()))
+                    : gamePlugin.getName(Locale.getDefault())
+        );
+        // Setter language (user choose)
+        newGame.setUserLanguage(
+                params.language() != null
+                        ? params.language()
+                        : "default"
+        );
+
         listOfGames.put(id, newGame);
         return newGame;
     }
