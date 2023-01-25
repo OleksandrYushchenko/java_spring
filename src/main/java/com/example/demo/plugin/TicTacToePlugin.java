@@ -31,4 +31,11 @@ public class TicTacToePlugin implements GamePlugin{
     public int getDefaultBoardSize() {
         return defaultBoardSize;
     }
+    public Map<String, String> getDataForGameCatalog(Locale locale) {
+        Map<String, String> res = new HashMap<>();
+        res.put("Default board size", this.defaultBoardSize + "");
+        res.put("Default number of players", this.defaultPlayerNb + "");
+        res.put("Game name(user language)", this.getName(locale));
+        return res;
+    }
 }

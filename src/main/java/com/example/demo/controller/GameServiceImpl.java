@@ -5,7 +5,7 @@ import com.example.demo.params.GameCreationParams;
 import com.example.demo.plugin.GamePlugin;
 import fr.le_campus_numerique.square_games.engine.Game;
 
-import fr.le_campus_numerique.square_games.engine.tictactoe.TicTacToeGameFactory;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,9 +15,13 @@ import java.util.*;
 @Service
 public class GameServiceImpl implements GameService{
     @Autowired
+    private HttpServletRequest request;
+    @Autowired
     private List<GamePlugin> gamePlugins;
     private final Map<UUID, GameCreateDTO> listOfGames = new HashMap<>();
-
+    public String getUserLanguage(HttpServletRequest request) {
+        return request.getHeader("accept-language");
+    }
     @Override
     public GameCreateDTO createGame(GameCreationParams params){
         // Choosing game plugin in depending of params.typeOfGame
@@ -35,14 +39,14 @@ public class GameServiceImpl implements GameService{
         GameCreateDTO newGame = new GameCreateDTO(id, game, params.playerCount() == 0 || params.boardSize() == 0 ? "default" : "entered by user");
         // Setter Name (translation)
         newGame.setGameName(
-                params.language() != null
-                    ? gamePlugin.getName(Locale.of(params.language()))
+                getUserLanguage(request) != null
+                    ? gamePlugin.getName(Locale.of(getUserLanguage(request)))
                     : gamePlugin.getName(Locale.getDefault())
         );
         // Setter language (user choose)
         newGame.setUserLanguage(
-                params.language() != null
-                        ? params.language()
+                getUserLanguage(request) != null
+                        ? getUserLanguage(request)
                         : "default"
         );
         newGame.setBoard(game);
@@ -53,5 +57,11 @@ public class GameServiceImpl implements GameService{
     public GameCreateDTO getGame(@PathVariable UUID gameId) {
         // TODO - actually get and return game with id 'gameId'
         return listOfGames.get(gameId);
+    }
+    public List<Map> getListOfGames() {
+        return gamePlugins
+                .stream()
+                .map(plugin -> plugin
+                        .getDataForGameCatalog(Locale.of(getUserLanguage(request)))).toList();
     }
 }

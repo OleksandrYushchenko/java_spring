@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 @Component
 public class ConnectFourPlugin implements GamePlugin {
@@ -32,5 +34,13 @@ public class ConnectFourPlugin implements GamePlugin {
     @Override
     public int getDefaultBoardSize() {
         return defaultBoardSize;
+    }
+    @Override
+    public Map<String, String> getDataForGameCatalog(Locale locale) {
+        Map<String, String> res = new HashMap<>();
+        res.put("Default board size", this.defaultBoardSize + "");
+        res.put("Default number of players", this.defaultPlayerNb + "");
+        res.put("Game name(user language)", this.getName(locale));
+        return res;
     }
 }

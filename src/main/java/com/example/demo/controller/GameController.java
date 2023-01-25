@@ -2,9 +2,12 @@ package com.example.demo.controller;
 
 import com.example.demo.DTO.GameCreateDTO;
 import com.example.demo.params.GameCreationParams;
+import com.example.demo.plugin.GamePlugin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -19,5 +22,9 @@ public class GameController {
     public GameCreateDTO getGame(@PathVariable UUID gameId) {
     // TODO - actually get and return game with id 'gameId'
         return gameService.getGame(gameId);
+    }
+    @GetMapping("/catalog")
+    public List<Map> getListOfGames() {
+        return gameService.getListOfGames();
     }
 }
