@@ -62,6 +62,7 @@ public class GameServiceImpl implements GameService{
         return gamePlugins
                 .stream()
                 .map(plugin -> plugin
-                        .getDataForGameCatalog(Locale.of(getUserLanguage(request)))).toList();
+                        .getDataForGameCatalog(Locale.of(getUserLanguage(request))))
+                .toList();
     }
 }

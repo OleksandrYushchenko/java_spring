@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.DTO.GameCreateDTO;
 import com.example.demo.params.GameCreationParams;
-import com.example.demo.plugin.GamePlugin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +14,7 @@ public class GameController {
     @Autowired
     private GameService gameService;
     @PostMapping("/games")
+    // TODO - creating a new game(typeOfgame, playerNb, Boarder, size, (header.accept-language))
     public GameCreateDTO createGame(@RequestBody GameCreationParams params) throws Exception {
         return gameService.createGame(params);
     }
@@ -24,6 +24,7 @@ public class GameController {
         return gameService.getGame(gameId);
     }
     @GetMapping("/catalog")
+    // TODO - get and return prepared list for /catalog
     public List<Map> getListOfGames() {
         return gameService.getListOfGames();
     }
