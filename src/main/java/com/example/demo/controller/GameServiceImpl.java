@@ -17,13 +17,9 @@ public class GameServiceImpl implements GameService{
     @Autowired
     private List<GamePlugin> gamePlugins;
     private final Map<UUID, GameCreateDTO> listOfGames = new HashMap<>();
+
     @Override
-    public Collection<String> getGameIdentifiers() {
-        TicTacToeGameFactory ticTacToeGameFactory = new TicTacToeGameFactory();
-        return List.of(ticTacToeGameFactory.getGameId());
-    }
-    @Override
-    public GameCreateDTO createGame(GameCreationParams params) throws Exception {
+    public GameCreateDTO createGame(GameCreationParams params){
         // Choosing game plugin in depending of params.typeOfGame
         GamePlugin gamePlugin = gamePlugins.stream()
                 .filter(pl -> pl.getGameFactory().getGameId().equals(params.typeOfGame()))
@@ -32,12 +28,10 @@ public class GameServiceImpl implements GameService{
         // Creating game (with user params OR default)
         Game game = params.playerCount() == 0 || params.boardSize() == 0
                 // default params
-                ? gamePlugin.getGameFactory().createGame(gamePlugin.getDefaultPlayerNb(), gamePlugin.getDefaultBoardSize())
+                ? Objects.requireNonNull(gamePlugin).getGameFactory().createGame(gamePlugin.getDefaultPlayerNb(), gamePlugin.getDefaultBoardSize())
                 // user params
-                : gamePlugin.getGameFactory().createGame(params.playerCount(), params.boardSize());
-
+                : Objects.requireNonNull(gamePlugin).getGameFactory().createGame(params.playerCount(), params.boardSize());
         UUID id = UUID.randomUUID();
-
         GameCreateDTO newGame = new GameCreateDTO(id, game, params.playerCount() == 0 || params.boardSize() == 0 ? "default" : "entered by user");
         // Setter Name (translation)
         newGame.setGameName(
@@ -51,7 +45,6 @@ public class GameServiceImpl implements GameService{
                         ? params.language()
                         : "default"
         );
-
         listOfGames.put(id, newGame);
         return newGame;
     }

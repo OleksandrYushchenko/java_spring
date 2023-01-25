@@ -17,8 +17,7 @@ public class GameController {
     }
     @PostMapping("/games")
     public GameCreateDTO createGame(@RequestBody GameCreationParams params) throws Exception {
-        GameCreateDTO gameCreateDTO = gameService.createGame(params);
-        return gameCreateDTO;
+        return gameService.createGame(params);
     }
     @GetMapping("/games/{gameId}")
     public GameCreateDTO getGame(@PathVariable UUID gameId) {
