@@ -11,10 +11,6 @@ import java.util.UUID;
 public class GameController {
     @Autowired
     private GameService gameService;
-    @GetMapping("/identifiers")
-    public void getGameIdentifiers(){
-        gameService.getGameIdentifiers();
-    }
     @PostMapping("/games")
     public GameCreateDTO createGame(@RequestBody GameCreationParams params) throws Exception {
         return gameService.createGame(params);
