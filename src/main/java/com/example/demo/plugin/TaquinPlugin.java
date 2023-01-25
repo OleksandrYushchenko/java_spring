@@ -25,12 +25,10 @@ public class TaquinPlugin implements GamePlugin{
     public GameFactory getGameFactory() {
         return new TaquinGameFactory();
     }
-
     @Override
     public int getDefaultPlayerNb() {
         return defaultPlayerNb;
     }
-
     @Override
     public int getDefaultBoardSize() {
         return defaultBoardSize;

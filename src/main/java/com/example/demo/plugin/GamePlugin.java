@@ -1,7 +1,6 @@
 package com.example.demo.plugin;
 
 import fr.le_campus_numerique.square_games.engine.GameFactory;
-import jakarta.annotation.Nonnull;
 import org.springframework.lang.NonNull;
 
 import java.util.Locale;

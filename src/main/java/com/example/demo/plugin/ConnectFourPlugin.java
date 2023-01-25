@@ -25,12 +25,10 @@ public class ConnectFourPlugin implements GamePlugin {
     public GameFactory getGameFactory() {
         return new ConnectFourGameFactory();
     }
-
     @Override
     public int getDefaultPlayerNb() {
         return defaultPlayerNb;
     }
-
     @Override
     public int getDefaultBoardSize() {
         return defaultBoardSize;

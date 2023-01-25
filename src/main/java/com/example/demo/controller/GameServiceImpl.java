@@ -45,6 +45,7 @@ public class GameServiceImpl implements GameService{
                         ? params.language()
                         : "default"
         );
+        newGame.setBoard(game);
         listOfGames.put(id, newGame);
         return newGame;
     }
