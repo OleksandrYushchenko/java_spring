@@ -1,23 +1,38 @@
 package com.example.demo.DTO;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import fr.le_campus_numerique.square_games.engine.CellPosition;
 import fr.le_campus_numerique.square_games.engine.Game;
 import fr.le_campus_numerique.square_games.engine.Token;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
 import java.util.UUID;
-
+@Entity
 public class GameCreateDTO {
-    private final UUID id;
-    private final String paramsOfGame;
-    private final String factoryId;
+    @Id
+    private UUID id;
+    @Transient
+    private String paramsOfGame;
+    @Column(name = "typeOfGame")
+    private String factoryId;
+    @Column(name = "gameStatus")
+    private String gameStatus;
     @JsonProperty
+    @Transient
     private String userLanguage;
+    @Transient
     private String gameName;
-    private final Game game;
+    @JsonIgnore
+    @Transient
+    private Game game;
     @JsonProperty
+    @Transient
     private Map<CellPosition, Token> board;
     public GameCreateDTO(UUID id, Game game, String isDefault){
         this.paramsOfGame = isDefault;
@@ -25,6 +40,9 @@ public class GameCreateDTO {
         this.factoryId = game.getFactoryId();
         this.game = game;
     }
+    public GameCreateDTO() {
+    }
+
     public void setGameName(String gameName) {
         this.gameName = gameName;
     }
@@ -49,5 +67,8 @@ public class GameCreateDTO {
     }
     public String getGameName() {
         return gameName;
+    }
+    public void setGameStatus(String gameStatus) {
+        this.gameStatus = gameStatus;
     }
 }
