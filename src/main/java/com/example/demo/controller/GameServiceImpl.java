@@ -2,9 +2,11 @@ package com.example.demo.controller;
 
 import com.example.demo.DTO.GameCreateDTO;
 import com.example.demo.params.GameCreationParams;
+import com.example.demo.params.MoveParams;
 import com.example.demo.plugin.GamePlugin;
 import fr.le_campus_numerique.square_games.engine.Game;
 
+import fr.le_campus_numerique.square_games.engine.InvalidPositionException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,18 @@ public class GameServiceImpl implements GameService{
     @Autowired
     private List<GamePlugin> gamePlugins;
     private final Map<UUID, GameCreateDTO> listOfGames = new HashMap<>();
+    @Override
+    public GameCreateDTO getGame(@PathVariable UUID gameId) {
+        // TODO - actually get and return game with id 'gameId'
+        return listOfGames.get(gameId);
+    }
+    public List<Map> getListOfGames() {
+        return gamePlugins
+                .stream()
+                .map(plugin -> plugin
+                        .getDataForGameCatalog(Locale.of(getUserLanguage(request))))
+                .toList();
+    }
     public String getUserLanguage(HttpServletRequest request) {
         return request.getHeader("accept-language");
     }
@@ -53,16 +67,10 @@ public class GameServiceImpl implements GameService{
         listOfGames.put(id, newGame);
         return newGame;
     }
-    @Override
-    public GameCreateDTO getGame(@PathVariable UUID gameId) {
-        // TODO - actually get and return game with id 'gameId'
-        return listOfGames.get(gameId);
-    }
-    public List<Map> getListOfGames() {
-        return gamePlugins
-                .stream()
-                .map(plugin -> plugin
-                        .getDataForGameCatalog(Locale.of(getUserLanguage(request))))
-                .toList();
+    public GameCreateDTO moveToken(@PathVariable UUID gameId, MoveParams params) throws InvalidPositionException {
+        GameCreateDTO game;
+        game = listOfGames.get(gameId);
+        game.getGame().getRemainingTokens().stream().findFirst().get().moveTo(params.position());
+        return game;
     }
 }

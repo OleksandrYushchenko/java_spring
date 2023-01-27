@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.DTO.GameCreateDTO;
 import com.example.demo.params.GameCreationParams;
+import com.example.demo.params.MoveParams;
+import fr.le_campus_numerique.square_games.engine.InvalidPositionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,5 +29,9 @@ public class GameController {
     // TODO - get and return prepared list for /catalog
     public List<Map> getListOfGames() {
         return gameService.getListOfGames();
+    }
+    @PutMapping("/games/{gameId}/move")
+    public GameCreateDTO gameMove(@PathVariable UUID gameId, @RequestBody MoveParams params) throws InvalidPositionException {
+        return gameService.moveToken(gameId, params);
     }
 }

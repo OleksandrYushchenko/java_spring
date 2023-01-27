@@ -1,3 +1,3 @@
 package com.example.demo.params;
-public record GameCreationParams(String typeOfGame, int playerCount, int boardSize, String language){
+public record GameCreationParams(String typeOfGame, int playerCount, int boardSize){
 }
