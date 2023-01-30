@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.DTO.GameCreateDTO;
 import com.example.demo.DTO.GameCreateDTORepository;
+import com.example.demo.DTO.PlayerCreateDTO;
+import com.example.demo.DTO.PlayerCreateDTORepository;
 import com.example.demo.connector.DbConnector;
 import com.example.demo.params.GameCreationParams;
 import com.example.demo.params.MoveParams;
@@ -22,6 +24,8 @@ import java.util.*;
 public class GameServiceImpl implements GameService{
     @Autowired
     private GameCreateDTORepository gameCreateDTORepository;
+    @Autowired
+    private PlayerCreateDTORepository playerCreateDTORepository;
     @Autowired
     private HttpServletRequest request;
     @Autowired
@@ -73,6 +77,8 @@ public class GameServiceImpl implements GameService{
         newGame.setGameStatus(newGame.getGame().getStatus().toString());
         listOfGames.put(id, newGame);
         gameCreateDTORepository.save(newGame);
+        playerCreateDTORepository.save(new PlayerCreateDTO(newGame.getGame().getPlayerIds().stream().findFirst().get()));
+        playerCreateDTORepository.save(new PlayerCreateDTO(newGame.getGame().getPlayerIds().stream().reduce((first, second) -> second).get()));
         return newGame;
     }
     public GameCreateDTO moveToken(@PathVariable UUID gameId, MoveParams params) throws InvalidPositionException {

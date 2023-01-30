@@ -5,15 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import fr.le_campus_numerique.square_games.engine.CellPosition;
 import fr.le_campus_numerique.square_games.engine.Game;
 import fr.le_campus_numerique.square_games.engine.Token;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
 import java.util.UUID;
 @Entity
+@Table(name = "games")
 public class GameCreateDTO {
     @Id
     private UUID id;
@@ -32,6 +30,9 @@ public class GameCreateDTO {
     @Transient
     private Game game;
     @JsonProperty
+    @Column(name = "board_size")
+    private int boardSize;
+    @JsonProperty
     @Transient
     private Map<CellPosition, Token> board;
     public GameCreateDTO(UUID id, Game game, String isDefault){
@@ -39,6 +40,7 @@ public class GameCreateDTO {
         this.id = id;
         this.factoryId = game.getFactoryId();
         this.game = game;
+        this.boardSize = game.getBoardSize();
     }
     public GameCreateDTO() {
     }
