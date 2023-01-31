@@ -6,7 +6,6 @@ import fr.le_campus_numerique.square_games.engine.CellPosition;
 import fr.le_campus_numerique.square_games.engine.Game;
 import fr.le_campus_numerique.square_games.engine.Token;
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
 import java.util.UUID;
@@ -14,7 +13,10 @@ import java.util.UUID;
 @Table(name = "games")
 public class GameCreateDTO {
     @Id
-    private UUID id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer id;
+    @Column(name = "game_id")
+    private UUID gameId;
     @Transient
     private String paramsOfGame;
     @Column(name = "typeOfGame")
@@ -37,29 +39,30 @@ public class GameCreateDTO {
     private Map<CellPosition, Token> board;
     public GameCreateDTO(UUID id, Game game, String isDefault){
         this.paramsOfGame = isDefault;
-        this.id = id;
+        this.gameId = id;
         this.factoryId = game.getFactoryId();
         this.game = game;
         this.boardSize = game.getBoardSize();
     }
     public GameCreateDTO() {
     }
-
+    public int getBoardSize() {
+        return boardSize;
+    }
     public void setGameName(String gameName) {
         this.gameName = gameName;
     }
     public void setUserLanguage(String userLanguage){
         this.userLanguage = userLanguage;
     }
-
     public void setBoard(Game game) {
         this.board = game.getBoard();
     }
     public Game getGame() {
         return game;
     }
-    public UUID getId() {
-        return id;
+    public UUID getGameId() {
+        return gameId;
     }
     public String getParamsOfGame() {
         return paramsOfGame;

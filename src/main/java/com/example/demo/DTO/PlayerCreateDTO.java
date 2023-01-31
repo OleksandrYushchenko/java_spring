@@ -1,25 +1,37 @@
 package com.example.demo.DTO;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import fr.le_campus_numerique.square_games.engine.CellPosition;
-import fr.le_campus_numerique.square_games.engine.Game;
-import fr.le_campus_numerique.square_games.engine.Token;
 import jakarta.persistence.*;
 
-import java.util.Map;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Table(name = "players")
 public class PlayerCreateDTO {
     @Id
+    @JsonProperty
     private UUID id;
-    public PlayerCreateDTO(UUID id) {
+    @Column(name = "game_id")
+    @JsonProperty
+    private UUID gameId;
+    public PlayerCreateDTO(UUID id, UUID gameId) {
         this.id = id;
+        this.gameId = gameId;
+    }
+    public PlayerCreateDTO() {};
+    @Override
+    public String toString() {
+        return String.format(
+                "PlayerCreateDTO[id='%s', game_id='%s']",
+                id, gameId);
     }
 
-    public PlayerCreateDTO() {
+    public UUID getId() {
+        return id;
+    }
 
+    public UUID getGameId() {
+        return gameId;
     }
 }
