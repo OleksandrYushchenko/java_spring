@@ -28,7 +28,7 @@ public class GameCreateDTO {
     private String userLanguage;
     @Transient
     private String gameName;
-    @JsonIgnore
+//    @JsonIgnore
     @Transient
     private Game game;
     @JsonProperty
@@ -37,6 +37,8 @@ public class GameCreateDTO {
     @JsonProperty
     @Transient
     private Map<CellPosition, Token> board;
+    @Transient
+    private UUID ownerId;
     public GameCreateDTO(UUID id, Game game, String isDefault){
         this.paramsOfGame = isDefault;
         this.gameId = id;
@@ -49,6 +51,11 @@ public class GameCreateDTO {
     public int getBoardSize() {
         return boardSize;
     }
+
+    public void setOwnerId(UUID ownerId) {
+        this.ownerId = ownerId;
+    }
+
     public void setGameName(String gameName) {
         this.gameName = gameName;
     }
@@ -76,4 +83,5 @@ public class GameCreateDTO {
     public void setGameStatus(String gameStatus) {
         this.gameStatus = gameStatus;
     }
+
 }

@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.DTO.GameCreateDTO;
 import com.example.demo.params.GameCreationParams;
 import com.example.demo.params.MoveParams;
+import fr.le_campus_numerique.square_games.engine.InconsistentGameDefinitionException;
 import fr.le_campus_numerique.square_games.engine.InvalidPositionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class GameController {
         return gameService.createGame(params);
     }
     @GetMapping("/games/{gameId}")
-    public GameCreateDTO getGame(@PathVariable UUID gameId) {
+    public GameCreateDTO getGame(@PathVariable UUID gameId) throws InconsistentGameDefinitionException {
     // TODO - actually get and return game with id 'gameId'
         return gameService.getGame(gameId);
     }
@@ -31,7 +32,7 @@ public class GameController {
         return gameService.getListOfGames();
     }
     @PutMapping("/games/{gameId}/move")
-    public GameCreateDTO gameMove(@PathVariable UUID gameId, @RequestBody MoveParams params) throws InvalidPositionException {
+    public GameCreateDTO gameMove(@PathVariable UUID gameId, @RequestBody MoveParams params) throws InvalidPositionException, InconsistentGameDefinitionException {
         return gameService.moveToken(gameId, params);
     }
 }

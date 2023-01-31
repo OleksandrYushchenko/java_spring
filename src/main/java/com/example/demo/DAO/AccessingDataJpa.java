@@ -26,6 +26,9 @@ public class AccessingDataJpa {
     public static void main(String[] args) {
         SpringApplication.run(AccessingDataJpa.class);
     }
+    public String getTypeOfGame(UUID id) {
+        return gameCreateDTORepository.findByGameId(id).getFactoryId();
+    }
     public int getBoardSize(UUID id){
         return gameCreateDTORepository.findByGameId(id).getBoardSize();
     }
@@ -33,12 +36,6 @@ public class AccessingDataJpa {
         return playerCreateDTORepository.findAllByGameId(id).stream().map(el -> el.getId()).toList();
     }
     public Collection<TokenPosition<UUID>> getBoardTokens(UUID id){
-        System.out.println(gameMoveDTORepository.findAllByGameId(id).stream().map(el -> new TokenPosition<>(
-                el.getOwnerId(),
-                el.getTokenName(),
-                el.getX(),
-                el.getY()
-        )).collect(Collectors.toList()));
         return gameMoveDTORepository.findAllByGameId(id).stream().map(el -> new TokenPosition<>(
                 el.getOwnerId(),
                 el.getTokenName(),

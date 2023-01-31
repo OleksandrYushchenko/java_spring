@@ -5,9 +5,8 @@ import com.example.demo.DTO.*;
 import com.example.demo.params.GameCreationParams;
 import com.example.demo.params.MoveParams;
 import com.example.demo.plugin.GamePlugin;
-import fr.le_campus_numerique.square_games.engine.Game;
+import fr.le_campus_numerique.square_games.engine.*;
 
-import fr.le_campus_numerique.square_games.engine.InvalidPositionException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,12 +29,24 @@ public class GameServiceImpl implements GameService{
     private HttpServletRequest request;
     @Autowired
     private List<GamePlugin> gamePlugins;
-    private final Map<UUID, GameCreateDTO> listOfGames = new HashMap<>();
+//    private final Map<UUID, GameCreateDTO> listOfGames = new HashMap<>();
     @Override
-    public GameCreateDTO getGame(@PathVariable UUID gameId) {
-        // TODO - actually get and return game with id 'gameId'
-
-        return listOfGames.get(gameId);
+    public GameCreateDTO getGame(@PathVariable UUID gameId) throws InconsistentGameDefinitionException {
+        GamePlugin gamePlugin = gamePlugins.stream()
+                .filter(pl -> pl.getGameFactory().getGameId().equals(accessingDataJpaPlayers.getTypeOfGame(gameId)))
+                .findFirst()
+                .orElse(null);
+        GameFactory gameFactory = Objects.requireNonNull(gamePlugin).getGameFactory();
+        Game game = gameFactory.createGame(
+                        accessingDataJpaPlayers.getBoardSize(gameId),
+                        accessingDataJpaPlayers.getPlayersList(gameId),
+                        accessingDataJpaPlayers.getBoardTokens(gameId) ,
+                        List.of()
+                );
+        GameCreateDTO gameCreateDTO = new GameCreateDTO(gameId, game, "entered by user");
+        gameCreateDTO.setBoard(game);
+        System.out.println("OK");
+        return gameCreateDTO;
     }
     public List<Map> getListOfGames() {
         return gamePlugins
@@ -77,7 +88,6 @@ public class GameServiceImpl implements GameService{
         // TODO - setting game board
         newGame.setBoard(game);
         newGame.setGameStatus(newGame.getGame().getStatus().toString());
-        listOfGames.put(id, newGame);
         // TODO - create row in table "games"
         gameCreateDTORepository.save(newGame);
         // TODO - create row's in table "players"
@@ -89,25 +99,22 @@ public class GameServiceImpl implements GameService{
                 newGame.getGame().getPlayerIds().stream().reduce((first, second) -> second).get(),
                 newGame.getGameId()
         ));
-        accessingDataJpaPlayers.getPlayersList(newGame.getGameId());
-        accessingDataJpaPlayers.getBoardSize(newGame.getGameId());
-        accessingDataJpaPlayers.getBoardTokens(newGame.getGameId());
         return newGame;
     }
-    public GameCreateDTO moveToken(@PathVariable UUID gameId, MoveParams params) throws InvalidPositionException {
+    public GameCreateDTO moveToken(@PathVariable UUID gameId, MoveParams params) throws InvalidPositionException, InconsistentGameDefinitionException {
         GameCreateDTO game;
-        game = listOfGames.get(gameId);
+        game = getGame(gameId);
+
         game.getGame().getRemainingTokens().stream().findFirst().get().moveTo(params.position());
         // TODO - add row to table "moves"
         gameMoveDTORepository.save(new GameMoveDTO(
                 gameId,
                 game.getGame().getCurrentPlayerId(),
-                game.getGameName(),
+                game.getGame().getRemainingTokens().stream().findFirst().get().getName(),
                 params.position().x(),
                 params.position().y()
-                ));
-        accessingDataJpaPlayers.getPlayersList(gameId);
-        accessingDataJpaPlayers.getBoardTokens(gameId);
+        ));
+
         return game;
     }
 }

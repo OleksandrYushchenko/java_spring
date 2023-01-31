@@ -3,6 +3,7 @@ package com.example.demo.DTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
+import java.util.Optional;
 import java.util.UUID;
 
 @Entity
