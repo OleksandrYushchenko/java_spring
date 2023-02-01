@@ -1,17 +1,29 @@
 package com.example.demo.DTO;
 
+import com.example.demo.controller.GameController;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import fr.le_campus_numerique.square_games.engine.CellPosition;
 import fr.le_campus_numerique.square_games.engine.Game;
 import fr.le_campus_numerique.square_games.engine.Token;
 import jakarta.persistence.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.UUID;
 @Entity
 @Table(name = "games")
 public class GameCreateDTO {
+    private static Logger LOGGER = LoggerFactory.getLogger(GameCreateDTO.class);
+
+    public void doStuff() {
+        LOGGER.trace("Message de niveau TRACE");
+        LOGGER.debug("Message de niveau DEBUG");
+        LOGGER.info("Message de niveau INFO");
+        LOGGER.warn("Message de niveau WARN");
+        LOGGER.error("Message de niveau WARN");
+    }
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;

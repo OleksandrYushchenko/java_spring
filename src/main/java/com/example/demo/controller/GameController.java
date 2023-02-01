@@ -5,6 +5,8 @@ import com.example.demo.params.GameCreationParams;
 import com.example.demo.params.MoveParams;
 import fr.le_campus_numerique.square_games.engine.InconsistentGameDefinitionException;
 import fr.le_campus_numerique.square_games.engine.InvalidPositionException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,7 @@ import java.util.UUID;
 
 @RestController
 public class GameController {
+
     @Autowired
     private GameService gameService;
     @PostMapping("/games")

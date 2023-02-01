@@ -8,6 +8,8 @@ import com.example.demo.plugin.GamePlugin;
 import fr.le_campus_numerique.square_games.engine.*;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +19,7 @@ import java.util.*;
 
 @Service
 public class GameServiceImpl implements GameService{
+    private static Logger LOGGER = LoggerFactory.getLogger(GameServiceImpl.class);
     @Autowired
     private AccessingDataJpa accessingDataJpaPlayers;
     @Autowired
@@ -45,6 +48,7 @@ public class GameServiceImpl implements GameService{
                 );
         GameCreateDTO gameCreateDTO = new GameCreateDTO(gameId, game, "entered by user");
         gameCreateDTO.setBoard(game);
+        gameCreateDTO.doStuff();
         gameCreateDTO.setPlayerA(accessingDataJpaPlayers.getPlayersList(gameId).stream().findFirst().get());
         gameCreateDTO.setPlayerA(accessingDataJpaPlayers.getPlayersList(gameId).stream().reduce((first, second) -> second).get());
         System.out.println("OK");
@@ -101,6 +105,8 @@ public class GameServiceImpl implements GameService{
                 newGame.getGame().getPlayerIds().stream().reduce((first, second) -> second).get(),
                 newGame.getGameId()
         ));
+        LOGGER.debug("String", game);
+        LOGGER.info("&&&");
         return newGame;
     }
     public GameCreateDTO moveToken(@PathVariable UUID gameId, MoveParams params) throws InvalidPositionException, InconsistentGameDefinitionException {
@@ -120,5 +126,8 @@ public class GameServiceImpl implements GameService{
                 params.position().y()
         ));
         return game;
+    }
+    public void test(){
+        LOGGER.debug("Error");
     }
 }
