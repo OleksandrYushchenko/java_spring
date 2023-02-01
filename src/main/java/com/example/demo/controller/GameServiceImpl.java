@@ -20,11 +20,11 @@ public class GameServiceImpl implements GameService{
     @Autowired
     private AccessingDataJpa accessingDataJpaPlayers;
     @Autowired
-    private GameMoveDTORepository gameMoveDTORepository;
+    private TokensDTORepository tokensDTORepository;
     @Autowired
     private GameCreateDTORepository gameCreateDTORepository;
     @Autowired
-    private PlayerCreateDTORepository playerCreateDTORepository;
+    private PlayersDTORepository playerCreateDTORepository;
     @Autowired
     private HttpServletRequest request;
     @Autowired
@@ -45,6 +45,8 @@ public class GameServiceImpl implements GameService{
                 );
         GameCreateDTO gameCreateDTO = new GameCreateDTO(gameId, game, "entered by user");
         gameCreateDTO.setBoard(game);
+        gameCreateDTO.setPlayerA(accessingDataJpaPlayers.getPlayersList(gameId).stream().findFirst().get());
+        gameCreateDTO.setPlayerA(accessingDataJpaPlayers.getPlayersList(gameId).stream().reduce((first, second) -> second).get());
         System.out.println("OK");
         return gameCreateDTO;
     }
@@ -91,11 +93,11 @@ public class GameServiceImpl implements GameService{
         // TODO - create row in table "games"
         gameCreateDTORepository.save(newGame);
         // TODO - create row's in table "players"
-        playerCreateDTORepository.save(new PlayerCreateDTO(
+        playerCreateDTORepository.save(new PlayersDTO(
                 newGame.getGame().getPlayerIds().stream().findFirst().get(),
                 newGame.getGameId()
         ));
-        playerCreateDTORepository.save(new PlayerCreateDTO(
+        playerCreateDTORepository.save(new PlayersDTO(
                 newGame.getGame().getPlayerIds().stream().reduce((first, second) -> second).get(),
                 newGame.getGameId()
         ));
@@ -104,17 +106,19 @@ public class GameServiceImpl implements GameService{
     public GameCreateDTO moveToken(@PathVariable UUID gameId, MoveParams params) throws InvalidPositionException, InconsistentGameDefinitionException {
         GameCreateDTO game;
         game = getGame(gameId);
-
-        game.getGame().getRemainingTokens().stream().findFirst().get().moveTo(params.position());
+        UUID owner = game.getGame().getRemainingTokens().stream().findFirst().get().getOwnerId().get();
+        String tokenName = game.getGame().getRemainingTokens().stream().findFirst().get().getName();
         // TODO - add row to table "moves"
-        gameMoveDTORepository.save(new GameMoveDTO(
+        game.getGame().getRemainingTokens().stream().findFirst().get().moveTo(params.position());
+        System.out.println(accessingDataJpaPlayers.getPlayersList(gameId));
+        // TODO - save token
+        tokensDTORepository.save(new TokensDTO(
                 gameId,
-                game.getGame().getCurrentPlayerId(),
-                game.getGame().getRemainingTokens().stream().findFirst().get().getName(),
+                owner,
+                tokenName,
                 params.position().x(),
                 params.position().y()
         ));
-
         return game;
     }
 }

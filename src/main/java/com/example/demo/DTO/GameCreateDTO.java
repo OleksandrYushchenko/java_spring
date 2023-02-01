@@ -39,6 +39,10 @@ public class GameCreateDTO {
     private Map<CellPosition, Token> board;
     @Transient
     private UUID ownerId;
+    @Transient
+    private UUID playerA;
+    @Transient
+    private UUID playerB;
     public GameCreateDTO(UUID id, Game game, String isDefault){
         this.paramsOfGame = isDefault;
         this.gameId = id;
@@ -48,14 +52,29 @@ public class GameCreateDTO {
     }
     public GameCreateDTO() {
     }
+
+    public void setPlayerA(UUID playerA) {
+        this.playerA = playerA;
+    }
+
+    public void setPlayerB(UUID playerB) {
+        this.playerB = playerB;
+    }
+
+    public UUID getPlayerA() {
+        return playerA;
+    }
+
+    public UUID getPlayerB() {
+        return playerB;
+    }
+
     public int getBoardSize() {
         return boardSize;
     }
-
     public void setOwnerId(UUID ownerId) {
         this.ownerId = ownerId;
     }
-
     public void setGameName(String gameName) {
         this.gameName = gameName;
     }

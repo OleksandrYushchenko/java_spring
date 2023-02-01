@@ -1,10 +1,8 @@
 package com.example.demo.DAO;
 
-import com.example.demo.DTO.GameCreateDTO;
 import com.example.demo.DTO.GameCreateDTORepository;
-import com.example.demo.DTO.GameMoveDTORepository;
-import com.example.demo.DTO.PlayerCreateDTORepository;
-import fr.le_campus_numerique.square_games.engine.Game;
+import com.example.demo.DTO.TokensDTORepository;
+import com.example.demo.DTO.PlayersDTORepository;
 import fr.le_campus_numerique.square_games.engine.TokenPosition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -18,11 +16,11 @@ import java.util.stream.Collectors;
 @Component
 public class AccessingDataJpa {
     @Autowired
-    private PlayerCreateDTORepository playerCreateDTORepository;
+    private PlayersDTORepository playerCreateDTORepository;
     @Autowired
     private GameCreateDTORepository gameCreateDTORepository;
     @Autowired
-    private GameMoveDTORepository gameMoveDTORepository;
+    private TokensDTORepository tokensDTORepository;
     public static void main(String[] args) {
         SpringApplication.run(AccessingDataJpa.class);
     }
@@ -36,7 +34,7 @@ public class AccessingDataJpa {
         return playerCreateDTORepository.findAllByGameId(id).stream().map(el -> el.getId()).toList();
     }
     public Collection<TokenPosition<UUID>> getBoardTokens(UUID id){
-        return gameMoveDTORepository.findAllByGameId(id).stream().map(el -> new TokenPosition<>(
+        return tokensDTORepository.findAllByGameId(id).stream().map(el -> new TokenPosition<>(
                 el.getOwnerId(),
                 el.getTokenName(),
                 el.getX(),

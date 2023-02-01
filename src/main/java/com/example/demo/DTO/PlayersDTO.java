@@ -3,23 +3,22 @@ package com.example.demo.DTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity
 @Table(name = "players")
-public class PlayerCreateDTO {
+public class PlayersDTO {
     @Id
     @JsonProperty
     private UUID id;
     @Column(name = "game_id")
     @JsonProperty
     private UUID gameId;
-    public PlayerCreateDTO(UUID id, UUID gameId) {
+    public PlayersDTO(UUID id, UUID gameId) {
         this.id = id;
         this.gameId = gameId;
     }
-    public PlayerCreateDTO() {};
+    public PlayersDTO() {};
     @Override
     public String toString() {
         return String.format(

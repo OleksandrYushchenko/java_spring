@@ -3,12 +3,11 @@ package com.example.demo.DTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Entity
 @Table(name = "moves")
-public class GameMoveDTO {
+public class TokensDTO {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
@@ -23,14 +22,14 @@ public class GameMoveDTO {
     private int X;
     @Column(name = "position_Y")
     private int Y;
-    public GameMoveDTO(UUID gameId, UUID ownerId, String tokenName, int x, int y) {
+    public TokensDTO(UUID gameId, UUID ownerId, String tokenName, int x, int y) {
         this.gameId = gameId;
         this.ownerId = ownerId;
         this.tokenName = tokenName;
         this.X = x;
         this.Y = y;
     }
-    public GameMoveDTO() {
+    public TokensDTO() {
     }
     public int getX() {
         return X;
