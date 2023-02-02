@@ -1,4 +1,4 @@
-package com.example.demo.plugin;
+package com.example.demo.plugins;
 
 import fr.le_campus_numerique.square_games.engine.GameFactory;
 import fr.le_campus_numerique.square_games.engine.connectfour.ConnectFourGameFactory;

@@ -4,7 +4,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -14,31 +13,34 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    private final MyUserDetailsService userDetailsService;
     @Autowired
     private AuthenticationConfiguration authenticationConfiguration;
+    private final MyUserDetailsService userDetailsService;
+    @Autowired
+    private JwtTokenAuthenticationFilter jwtTokenFilter;
 
     public SecurityConfig(final MyUserDetailsService userDetailsService){
         this.userDetailsService = userDetailsService;
     }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        final AuthenticationManagerBuilder authenticationManagerBuilder =
-                http.getSharedObject(AuthenticationManagerBuilder.class);
+        final AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
         authenticationManagerBuilder.userDetailsService(userDetailsService);
         final var authenticationManager = authenticationManagerBuilder.build();
         http.authenticationManager(authenticationManager);
+        // Enable CORS and disable CSRF
         http = http.cors().and().csrf().disable();
+        // Set session management to stateless
         http = http
-
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and();
-
+        // Set unauthorized requests exception handler
         http = http
                 .exceptionHandling()
                 .authenticationEntryPoint(
@@ -50,13 +52,16 @@ public class SecurityConfig {
                         }
                 )
                 .and();
+        // Set permissions on endpoints
         http.authorizeHttpRequests()
+        // Our public endpoints
                 .requestMatchers("/api/public/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/author/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/author/search").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/book/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/book/search").permitAll()
+        // Our private endpoints
                 .anyRequest().authenticated();
+        http.addFilterBefore(
+                jwtTokenFilter,
+                UsernamePasswordAuthenticationFilter.class
+        );
         return http.build();
     }
     @Bean

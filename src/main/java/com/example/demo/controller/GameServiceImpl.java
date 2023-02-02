@@ -4,7 +4,7 @@ import com.example.demo.DAO.AccessingDataJpa;
 import com.example.demo.DTO.*;
 import com.example.demo.params.GameCreationParams;
 import com.example.demo.params.MoveParams;
-import com.example.demo.plugin.GamePlugin;
+import com.example.demo.plugins.GamePlugin;
 import fr.le_campus_numerique.square_games.engine.*;
 
 import jakarta.servlet.http.HttpServletRequest;
