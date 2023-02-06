@@ -1,8 +1,8 @@
 package com.example.demo.DAO;
 
-import com.example.demo.DTO.GameCreateDTORepository;
-import com.example.demo.DTO.TokensDTORepository;
-import com.example.demo.DTO.PlayersDTORepository;
+import com.example.demo.repositories.GameRepository;
+import com.example.demo.repositories.TokensRepository;
+import com.example.demo.repositories.PlayersRepository;
 import fr.le_campus_numerique.square_games.engine.TokenPosition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
 @Component
 public class AccessingDataJpa {
     @Autowired
-    private PlayersDTORepository playerCreateDTORepository;
+    private PlayersRepository playerCreateDTORepository;
     @Autowired
-    private GameCreateDTORepository gameCreateDTORepository;
+    private GameRepository gameCreateDTORepository;
     @Autowired
-    private TokensDTORepository tokensDTORepository;
+    private TokensRepository tokensDTORepository;
     public static void main(String[] args) {
         SpringApplication.run(AccessingDataJpa.class);
     }

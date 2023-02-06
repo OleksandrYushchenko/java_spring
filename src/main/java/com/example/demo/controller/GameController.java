@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.DTO.GameCreateDTO;
+import com.example.demo.DTO.GameDTO;
 import com.example.demo.params.GameCreationParams;
 import com.example.demo.params.MoveParams;
 import com.example.demo.security.Roles;
@@ -20,11 +20,11 @@ public class GameController {
     private GameService gameService;
     @PostMapping("/games")
     // TODO - creating a new game(typeOfgame, playerNb, Boarder, size, (header.accept-language))
-    public GameCreateDTO createGame(@RequestBody GameCreationParams params) throws Exception {
+    public GameDTO createGame(@RequestBody GameCreationParams params) throws Exception {
         return gameService.createGame(params);
     }
     @GetMapping("/games/{gameId}")
-    public GameCreateDTO getGame(@PathVariable UUID gameId) throws InconsistentGameDefinitionException {
+    public GameDTO getGame(@PathVariable UUID gameId) throws InconsistentGameDefinitionException {
     // TODO - actually get and return game with id 'gameId'
         return gameService.getGame(gameId);
     }
@@ -35,7 +35,7 @@ public class GameController {
         return gameService.getListOfGames();
     }
     @PutMapping("/games/{gameId}/move")
-    public GameCreateDTO gameMove(@PathVariable UUID gameId, @RequestBody MoveParams params) throws InvalidPositionException, InconsistentGameDefinitionException {
+    public GameDTO gameMove(@PathVariable UUID gameId, @RequestBody MoveParams params) throws InvalidPositionException, InconsistentGameDefinitionException {
         return gameService.makeMove(gameId, params);
     }
     @DeleteMapping("/games/{gameId}/delete")

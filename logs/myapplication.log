@@ -1,0 +1,21 @@
+2023-02-06T13:07:28.278+01:00  WARN 17004 --- [main] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2023-02-06T13:07:29.480+01:00 DEBUG 17004 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 8 mappings in 'requestMappingHandlerMapping'
+2023-02-06T13:07:29.532+01:00 DEBUG 17004 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2023-02-06T13:07:29.583+01:00 DEBUG 17004 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2023-02-06T13:07:29.615+01:00 DEBUG 17004 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2023-02-06T13:07:50.988+01:00  INFO 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-02-06T13:07:50.988+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2023-02-06T13:07:50.988+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2023-02-06T13:07:50.989+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2023-02-06T13:07:50.989+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@194a653d
+2023-02-06T13:07:50.989+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@5f4f198c
+2023-02-06T13:07:50.989+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2023-02-06T13:07:50.989+01:00  INFO 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-02-06T13:07:50.999+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.security.AuthentificationApi#login(AuthentificationRequest)
+2023-02-06T13:07:51.001+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.security.AuthentificationApi#login(AuthentificationRequest)
+2023-02-06T13:07:51.002+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : POST "/api/public/login", parameters={}
+2023-02-06T13:07:51.003+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.security.AuthentificationApi#login(AuthentificationRequest)
+2023-02-06T13:07:51.043+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthentificationRequest[name=user, password=helloworld]]
+2023-02-06T13:07:51.275+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-02-06T13:07:51.276+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.example.demo.DTO.UserDTO@4d3ed068]
+2023-02-06T13:07:51.279+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK

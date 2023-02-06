@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 @Entity
 @Table(name = "users")
-public class User implements UserDetails {
+public class UserEntity implements UserDetails {
     @ElementCollection(fetch = FetchType.EAGER)
     private Collection<String> authorities;
     @Id
@@ -19,7 +19,7 @@ public class User implements UserDetails {
     private String password;
     @Column
     private String role;
-    public User() {}
+    public UserEntity() {}
 
     public void setName(String name) {
         this.name = name;
@@ -65,5 +65,9 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

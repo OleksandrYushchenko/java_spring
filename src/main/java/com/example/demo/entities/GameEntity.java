@@ -1,9 +1,6 @@
-package com.example.demo.DTO;
+package com.example.demo.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import fr.le_campus_numerique.square_games.engine.CellPosition;
-import fr.le_campus_numerique.square_games.engine.Game;
 import fr.le_campus_numerique.square_games.engine.Token;
 import jakarta.persistence.*;
 import org.slf4j.Logger;
@@ -13,10 +10,10 @@ import java.util.Map;
 import java.util.UUID;
 @Entity
 @Table(name = "games")
-public class GameCreateDTO {
+public class GameEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @Column(name = "game_id")
     private UUID gameId;
     @Transient
@@ -25,18 +22,14 @@ public class GameCreateDTO {
     private String factoryId;
     @Column(name = "gameStatus")
     private String gameStatus;
-    @JsonProperty
     @Transient
     private String userLanguage;
     @Transient
     private String gameName;
-    @JsonIgnore
     @Transient
-    private Game game;
-    @JsonProperty
+    private fr.le_campus_numerique.square_games.engine.Game game;
     @Column(name = "board_size")
     private int boardSize;
-    @JsonProperty
     @Transient
     private Map<CellPosition, Token> board;
     @Transient
@@ -45,15 +38,14 @@ public class GameCreateDTO {
     private UUID playerA;
     @Transient
     private UUID playerB;
-    public GameCreateDTO(UUID id, Game game, String isDefault){
+    public GameEntity(UUID id, fr.le_campus_numerique.square_games.engine.Game game, String isDefault){
         this.paramsOfGame = isDefault;
         this.gameId = id;
         this.factoryId = game.getFactoryId();
         this.game = game;
         this.boardSize = game.getBoardSize();
     }
-
-    private static Logger LOGGER = LoggerFactory.getLogger(GameCreateDTO.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(GameEntity.class);
     public void doStuff() {
         LOGGER.trace("Message de niveau TRACE");
         LOGGER.debug("Message de niveau DEBUG");
@@ -61,9 +53,8 @@ public class GameCreateDTO {
         LOGGER.warn("Message de niveau WARN");
         LOGGER.error("Message de niveau WARN");
     }
-    public GameCreateDTO() {
+    public GameEntity() {
     }
-
     public void setPlayerA(UUID playerA) {
         this.playerA = playerA;
     }
@@ -80,6 +71,12 @@ public class GameCreateDTO {
         return playerB;
     }
 
+    public String getUserLanguage() {
+        return userLanguage;
+    }
+    public Map<CellPosition, Token> getBoard() {
+        return board;
+    }
     public int getBoardSize() {
         return boardSize;
     }
@@ -92,10 +89,10 @@ public class GameCreateDTO {
     public void setUserLanguage(String userLanguage){
         this.userLanguage = userLanguage;
     }
-    public void setBoard(Game game) {
+    public void setBoard(fr.le_campus_numerique.square_games.engine.Game game) {
         this.board = game.getBoard();
     }
-    public Game getGame() {
+    public fr.le_campus_numerique.square_games.engine.Game getGame() {
         return game;
     }
     public UUID getGameId() {
@@ -107,11 +104,11 @@ public class GameCreateDTO {
     public String getFactoryId() {
         return factoryId;
     }
-    public String getGameName() {
-        return gameName;
-    }
     public void setGameStatus(String gameStatus) {
         this.gameStatus = gameStatus;
     }
 
+    public String getGameName() {
+        return gameName;
+    }
 }

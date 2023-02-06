@@ -1,4 +1,4 @@
-package com.example.demo.DTO;
+package com.example.demo.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
@@ -7,10 +7,10 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "moves")
-public class TokensDTO {
+public class TokensEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @Column(name = "game_id")
     @JsonProperty
     private UUID gameId;
@@ -22,14 +22,14 @@ public class TokensDTO {
     private int X;
     @Column(name = "position_Y")
     private int Y;
-    public TokensDTO(UUID gameId, UUID ownerId, String tokenName, int x, int y) {
+    public TokensEntity(UUID gameId, UUID ownerId, String tokenName, int x, int y) {
         this.gameId = gameId;
         this.ownerId = ownerId;
         this.tokenName = tokenName;
         this.X = x;
         this.Y = y;
     }
-    public TokensDTO() {
+    public TokensEntity() {
     }
     public int getX() {
         return X;
@@ -43,5 +43,13 @@ public class TokensDTO {
 
     public UUID getOwnerId() {
         return ownerId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public UUID getGameId() {
+        return gameId;
     }
 }

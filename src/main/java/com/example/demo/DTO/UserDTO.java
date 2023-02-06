@@ -1,10 +1,10 @@
 package com.example.demo.DTO;
 
-import com.example.demo.entities.User;
+import com.example.demo.entities.UserEntity;
 
 public class UserDTO {
     private String userName;
-    public UserDTO(User user){
+    public UserDTO(UserEntity user){
         this.userName = user.getUsername();
     }
     public String getUserName() {

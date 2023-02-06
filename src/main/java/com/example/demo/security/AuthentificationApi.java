@@ -1,7 +1,7 @@
 package com.example.demo.security;
 
 import com.example.demo.DTO.UserDTO;
-import com.example.demo.entities.User;
+import com.example.demo.entities.UserEntity;
 import com.example.demo.params.AuthentificationRequest;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -43,7 +43,7 @@ public class AuthentificationApi {
                                     request.password()
                             )
                     );
-            final User user = (User) authenticate.getPrincipal();
+            final UserEntity user = (UserEntity) authenticate.getPrincipal();
             final String token = Jwts.builder().setSubject(authenticate
                             .getName()).claim("authorities", authenticate
                             .getAuthorities().stream().map(GrantedAuthority::getAuthority).collect
@@ -51,7 +51,7 @@ public class AuthentificationApi {
                     .setExpiration(new Date(System.currentTimeMillis() + 3600 * 1000L))
                     .signWith(SignatureAlgorithm.HS512, "secret".getBytes()).compact();
             response.addHeader("Authorization", "Bearer " + token);
-// TODO : conversion du user en UserDTO
+            // TODO : conversion du user en UserDTO
             UserDTO userDTO = new UserDTO(user);
             return ResponseEntity.ok()
                     .header(
