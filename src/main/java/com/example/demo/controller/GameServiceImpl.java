@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.DAO.AccessingDataJpa;
 import com.example.demo.DTO.*;
+import com.example.demo.DTO.GameCreateDTO;
 import com.example.demo.params.GameCreationParams;
 import com.example.demo.params.MoveParams;
 import com.example.demo.plugins.GamePlugin;

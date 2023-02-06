@@ -1,0 +1,61 @@
+2023-02-06T09:48:47.347+01:00  WARN 5385 --- [main] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2023-02-06T09:48:48.596+01:00 DEBUG 5385 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 8 mappings in 'requestMappingHandlerMapping'
+2023-02-06T09:48:48.695+01:00 DEBUG 5385 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2023-02-06T09:48:48.784+01:00 DEBUG 5385 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2023-02-06T09:48:48.844+01:00 DEBUG 5385 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2023-02-06T09:50:37.587+01:00  WARN 5567 --- [main] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2023-02-06T09:50:38.717+01:00 DEBUG 5567 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 8 mappings in 'requestMappingHandlerMapping'
+2023-02-06T09:50:38.770+01:00 DEBUG 5567 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2023-02-06T09:50:38.821+01:00 DEBUG 5567 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2023-02-06T09:50:38.850+01:00 DEBUG 5567 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2023-02-06T09:50:39.520+01:00  INFO 5567 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-02-06T09:50:39.521+01:00 DEBUG 5567 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2023-02-06T09:50:39.521+01:00 DEBUG 5567 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2023-02-06T09:50:39.521+01:00 DEBUG 5567 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2023-02-06T09:50:39.521+01:00 DEBUG 5567 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@41f3f64
+2023-02-06T09:50:39.521+01:00 DEBUG 5567 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@125df632
+2023-02-06T09:50:39.521+01:00 DEBUG 5567 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2023-02-06T09:50:39.522+01:00  INFO 5567 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-02-06T09:50:39.531+01:00 DEBUG 5567 --- [http-nio-7777-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.security.AuthentificationApi#login(AuthentificationRequest)
+2023-02-06T09:50:39.533+01:00 DEBUG 5567 --- [http-nio-7777-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.security.AuthentificationApi#login(AuthentificationRequest)
+2023-02-06T09:50:39.534+01:00 DEBUG 5567 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : POST "/api/public/login", parameters={}
+2023-02-06T09:50:39.535+01:00 DEBUG 5567 --- [http-nio-7777-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.security.AuthentificationApi#login(AuthentificationRequest)
+2023-02-06T09:50:39.575+01:00 DEBUG 5567 --- [http-nio-7777-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthentificationRequest[name=root, password=helloworld]]
+2023-02-06T09:50:39.810+01:00 DEBUG 5567 --- [http-nio-7777-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-02-06T09:50:39.810+01:00 DEBUG 5567 --- [http-nio-7777-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.example.demo.DTO.UserDTO@5da03cfe]
+2023-02-06T09:50:39.815+01:00 DEBUG 5567 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-02-06T09:51:12.502+01:00 DEBUG 5567 --- [http-nio-7777-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#getListOfGames()
+2023-02-06T09:51:12.516+01:00 DEBUG 5567 --- [http-nio-7777-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#getListOfGames()
+2023-02-06T09:51:12.516+01:00 DEBUG 5567 --- [http-nio-7777-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/catalog", parameters={}
+2023-02-06T09:51:12.517+01:00 DEBUG 5567 --- [http-nio-7777-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#getListOfGames()
+2023-02-06T09:51:12.520+01:00 DEBUG 5567 --- [http-nio-7777-exec-3] o.s.web.servlet.DispatcherServlet        : Failed to complete request: org.springframework.security.access.AccessDeniedException: Access is denied
+2023-02-06T09:51:12.523+01:00 DEBUG 5567 --- [http-nio-7777-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-02-06T09:51:22.297+01:00 DEBUG 5567 --- [http-nio-7777-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.security.AuthentificationApi#login(AuthentificationRequest)
+2023-02-06T09:51:22.298+01:00 DEBUG 5567 --- [http-nio-7777-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.security.AuthentificationApi#login(AuthentificationRequest)
+2023-02-06T09:51:22.298+01:00 DEBUG 5567 --- [http-nio-7777-exec-4] o.s.web.servlet.DispatcherServlet        : POST "/api/public/login", parameters={}
+2023-02-06T09:51:22.298+01:00 DEBUG 5567 --- [http-nio-7777-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.security.AuthentificationApi#login(AuthentificationRequest)
+2023-02-06T09:51:22.298+01:00 DEBUG 5567 --- [http-nio-7777-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthentificationRequest[name=user, password=helloworld]]
+2023-02-06T09:51:22.370+01:00 DEBUG 5567 --- [http-nio-7777-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-02-06T09:51:22.370+01:00 DEBUG 5567 --- [http-nio-7777-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.example.demo.DTO.UserDTO@7858d82c]
+2023-02-06T09:51:22.370+01:00 DEBUG 5567 --- [http-nio-7777-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-02-06T09:51:33.396+01:00 DEBUG 5567 --- [http-nio-7777-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#getListOfGames()
+2023-02-06T09:51:33.402+01:00 DEBUG 5567 --- [http-nio-7777-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#getListOfGames()
+2023-02-06T09:51:33.402+01:00 DEBUG 5567 --- [http-nio-7777-exec-5] o.s.web.servlet.DispatcherServlet        : GET "/catalog", parameters={}
+2023-02-06T09:51:33.402+01:00 DEBUG 5567 --- [http-nio-7777-exec-5] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#getListOfGames()
+2023-02-06T09:51:33.405+01:00 DEBUG 5567 --- [http-nio-7777-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-02-06T09:51:33.406+01:00 DEBUG 5567 --- [http-nio-7777-exec-5] m.m.a.RequestResponseBodyMethodProcessor : Writing [[{Game name(user language)=connect4, Default board size=7, Default number of players=2}, {Game name( (truncated)...]
+2023-02-06T09:51:33.407+01:00 DEBUG 5567 --- [http-nio-7777-exec-5] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-02-06T09:51:42.049+01:00 DEBUG 5567 --- [http-nio-7777-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.security.AuthentificationApi#login(AuthentificationRequest)
+2023-02-06T09:51:42.049+01:00 DEBUG 5567 --- [http-nio-7777-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.security.AuthentificationApi#login(AuthentificationRequest)
+2023-02-06T09:51:42.049+01:00 DEBUG 5567 --- [http-nio-7777-exec-6] o.s.web.servlet.DispatcherServlet        : POST "/api/public/login", parameters={}
+2023-02-06T09:51:42.049+01:00 DEBUG 5567 --- [http-nio-7777-exec-6] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.security.AuthentificationApi#login(AuthentificationRequest)
+2023-02-06T09:51:42.050+01:00 DEBUG 5567 --- [http-nio-7777-exec-6] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthentificationRequest[name=root, password=helloworld]]
+2023-02-06T09:51:42.121+01:00 DEBUG 5567 --- [http-nio-7777-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-02-06T09:51:42.121+01:00 DEBUG 5567 --- [http-nio-7777-exec-6] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.example.demo.DTO.UserDTO@93dd9c7]
+2023-02-06T09:51:42.121+01:00 DEBUG 5567 --- [http-nio-7777-exec-6] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-02-06T09:51:51.483+01:00 DEBUG 5567 --- [http-nio-7777-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#getListOfGames()
+2023-02-06T09:51:51.488+01:00 DEBUG 5567 --- [http-nio-7777-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#getListOfGames()
+2023-02-06T09:51:51.489+01:00 DEBUG 5567 --- [http-nio-7777-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/catalog", parameters={}
+2023-02-06T09:51:51.489+01:00 DEBUG 5567 --- [http-nio-7777-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#getListOfGames()
+2023-02-06T09:51:51.489+01:00 DEBUG 5567 --- [http-nio-7777-exec-7] o.s.web.servlet.DispatcherServlet        : Failed to complete request: org.springframework.security.access.AccessDeniedException: Access is denied
+2023-02-06T09:51:51.490+01:00 DEBUG 5567 --- [http-nio-7777-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)

@@ -3,9 +3,9 @@ package com.example.demo.controller;
 import com.example.demo.DTO.GameCreateDTO;
 import com.example.demo.params.GameCreationParams;
 import com.example.demo.params.MoveParams;
+import com.example.demo.security.Roles;
 import fr.le_campus_numerique.square_games.engine.InconsistentGameDefinitionException;
 import fr.le_campus_numerique.square_games.engine.InvalidPositionException;
-import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,6 @@ import java.util.UUID;
 
 @RestController
 public class GameController {
-
     @Autowired
     private GameService gameService;
     @PostMapping("/games")
@@ -30,6 +29,7 @@ public class GameController {
         return gameService.getGame(gameId);
     }
     @GetMapping("/catalog")
+    @Secured(Roles.ROlE_USER)
     // TODO - get and return prepared list for /catalog
     public List<Map> getListOfGames() {
         return gameService.getListOfGames();

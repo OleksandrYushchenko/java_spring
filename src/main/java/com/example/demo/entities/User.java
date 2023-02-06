@@ -17,14 +17,8 @@ public class User implements UserDetails {
     private String name;
     @Column
     private String password;
-    @ManyToMany
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
+    @Column
+    private String role;
     public User() {}
 
     public void setName(String name) {
@@ -34,11 +28,6 @@ public class User implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.authorities.stream().map(s -> new GrantedAuthority() {
@@ -77,9 +66,4 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-    public Collection<Role> getRoles() {
-        return roles;
-    }
-
 }

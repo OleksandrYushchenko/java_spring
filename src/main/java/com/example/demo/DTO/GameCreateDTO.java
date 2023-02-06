@@ -1,6 +1,5 @@
 package com.example.demo.DTO;
 
-import com.example.demo.controller.GameController;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import fr.le_campus_numerique.square_games.engine.CellPosition;
@@ -15,15 +14,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "games")
 public class GameCreateDTO {
-    private static Logger LOGGER = LoggerFactory.getLogger(GameCreateDTO.class);
-
-    public void doStuff() {
-        LOGGER.trace("Message de niveau TRACE");
-        LOGGER.debug("Message de niveau DEBUG");
-        LOGGER.info("Message de niveau INFO");
-        LOGGER.warn("Message de niveau WARN");
-        LOGGER.error("Message de niveau WARN");
-    }
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
@@ -40,7 +30,7 @@ public class GameCreateDTO {
     private String userLanguage;
     @Transient
     private String gameName;
-//    @JsonIgnore
+    @JsonIgnore
     @Transient
     private Game game;
     @JsonProperty
@@ -61,6 +51,15 @@ public class GameCreateDTO {
         this.factoryId = game.getFactoryId();
         this.game = game;
         this.boardSize = game.getBoardSize();
+    }
+
+    private static Logger LOGGER = LoggerFactory.getLogger(GameCreateDTO.class);
+    public void doStuff() {
+        LOGGER.trace("Message de niveau TRACE");
+        LOGGER.debug("Message de niveau DEBUG");
+        LOGGER.info("Message de niveau INFO");
+        LOGGER.warn("Message de niveau WARN");
+        LOGGER.error("Message de niveau WARN");
     }
     public GameCreateDTO() {
     }
