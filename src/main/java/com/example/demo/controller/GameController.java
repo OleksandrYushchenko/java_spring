@@ -5,9 +5,9 @@ import com.example.demo.params.GameCreationParams;
 import com.example.demo.params.MoveParams;
 import fr.le_campus_numerique.square_games.engine.InconsistentGameDefinitionException;
 import fr.le_campus_numerique.square_games.engine.InvalidPositionException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,6 +36,10 @@ public class GameController {
     }
     @PutMapping("/games/{gameId}/move")
     public GameCreateDTO gameMove(@PathVariable UUID gameId, @RequestBody MoveParams params) throws InvalidPositionException, InconsistentGameDefinitionException {
-        return gameService.moveToken(gameId, params);
+        return gameService.makeMove(gameId, params);
+    }
+    @DeleteMapping("/games/{gameId}/delete")
+    public void deleteGame(@PathVariable UUID gameId){
+        gameService.deleteGame(gameId);
     }
 }

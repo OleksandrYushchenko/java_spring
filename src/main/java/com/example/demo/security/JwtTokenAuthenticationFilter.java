@@ -1,6 +1,5 @@
 package com.example.demo.security;
 
-import com.example.demo.repositories.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
@@ -20,7 +19,7 @@ import java.util.List;
 @Component
 public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
-    private MyUserDetailsService myUserDetailsService;
+    private UserDetailsService myUserDetailsService;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         final String header = request.getHeader("Authorization");

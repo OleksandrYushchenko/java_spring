@@ -7,22 +7,37 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 @Entity
 @Table(name = "users")
-public class UserEntity implements UserDetails {
+public class User implements UserDetails {
     @ElementCollection(fetch = FetchType.EAGER)
     private Collection<String> authorities;
     @Id
-    @Column(name = "user_id")
-    private Long userId;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
     @Column
     private String name;
     @Column
     private String password;
-    public UserEntity(String name, Long userId, String password){
-        this.userId = userId;
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles;
+    public User() {}
+
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public void setPassword(String password) {
         this.password = password;
     }
-    public UserEntity() {}
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -62,4 +77,9 @@ public class UserEntity implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
 }

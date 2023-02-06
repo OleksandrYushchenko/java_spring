@@ -109,7 +109,7 @@ public class GameServiceImpl implements GameService{
         LOGGER.info("&&&");
         return newGame;
     }
-    public GameCreateDTO moveToken(@PathVariable UUID gameId, MoveParams params) throws InvalidPositionException, InconsistentGameDefinitionException {
+    public GameCreateDTO makeMove(@PathVariable UUID gameId, MoveParams params) throws InvalidPositionException, InconsistentGameDefinitionException {
         GameCreateDTO game;
         game = getGame(gameId);
         UUID owner = game.getGame().getRemainingTokens().stream().findFirst().get().getOwnerId().get();
@@ -127,7 +127,9 @@ public class GameServiceImpl implements GameService{
         ));
         return game;
     }
-    public void test(){
-        LOGGER.debug("Error");
+    @Override
+    public void deleteGame(UUID gameId) {
+        gameCreateDTORepository.deleteByGameId(gameId);
+//        return "Game " + gameCreateDTORepository.findByGameId(gameId).getFactoryId() + " id:" + gameId + "deleted";
     }
 }

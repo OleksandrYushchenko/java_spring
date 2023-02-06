@@ -1,7 +1,8 @@
 package com.example.demo.security;
 
 import com.example.demo.DTO.UserDTO;
-import com.example.demo.entities.UserEntity;
+import com.example.demo.entities.User;
+import com.example.demo.params.AuthentificationRequest;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.servlet.http.HttpServletResponse;
@@ -42,7 +43,7 @@ public class AuthentificationApi {
                                     request.password()
                             )
                     );
-            final UserEntity user = (UserEntity) authenticate.getPrincipal();
+            final User user = (User) authenticate.getPrincipal();
             final String token = Jwts.builder().setSubject(authenticate
                             .getName()).claim("authorities", authenticate
                             .getAuthorities().stream().map(GrantedAuthority::getAuthority).collect

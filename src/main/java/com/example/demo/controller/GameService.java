@@ -18,5 +18,6 @@ public interface GameService {
     GameCreateDTO getGame(@PathVariable UUID gameId) throws InconsistentGameDefinitionException;
     String getUserLanguage(HttpServletRequest request);
     List<Map> getListOfGames();
-    GameCreateDTO moveToken(@PathVariable UUID gameId, MoveParams params) throws InvalidPositionException, InconsistentGameDefinitionException;
+    GameCreateDTO makeMove(@PathVariable UUID gameId, MoveParams params) throws InvalidPositionException, InconsistentGameDefinitionException;
+    void deleteGame(@PathVariable UUID gameId);
 }
