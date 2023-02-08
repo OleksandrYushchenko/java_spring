@@ -1,21 +1,96 @@
-2023-02-06T13:07:28.278+01:00  WARN 17004 --- [main] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
-2023-02-06T13:07:29.480+01:00 DEBUG 17004 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 8 mappings in 'requestMappingHandlerMapping'
-2023-02-06T13:07:29.532+01:00 DEBUG 17004 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
-2023-02-06T13:07:29.583+01:00 DEBUG 17004 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2023-02-06T13:07:29.615+01:00 DEBUG 17004 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
-2023-02-06T13:07:50.988+01:00  INFO 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2023-02-06T13:07:50.988+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
-2023-02-06T13:07:50.988+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
-2023-02-06T13:07:50.989+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
-2023-02-06T13:07:50.989+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@194a653d
-2023-02-06T13:07:50.989+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@5f4f198c
-2023-02-06T13:07:50.989+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2023-02-06T13:07:50.989+01:00  INFO 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2023-02-06T13:07:50.999+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.security.AuthentificationApi#login(AuthentificationRequest)
-2023-02-06T13:07:51.001+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.security.AuthentificationApi#login(AuthentificationRequest)
-2023-02-06T13:07:51.002+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : POST "/api/public/login", parameters={}
-2023-02-06T13:07:51.003+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.security.AuthentificationApi#login(AuthentificationRequest)
-2023-02-06T13:07:51.043+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [AuthentificationRequest[name=user, password=helloworld]]
-2023-02-06T13:07:51.275+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
-2023-02-06T13:07:51.276+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [com.example.demo.DTO.UserDTO@4d3ed068]
-2023-02-06T13:07:51.279+01:00 DEBUG 17004 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-02-08T13:06:37.112+01:00 DEBUG 17793 --- [http-nio-7777-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2023-02-08T13:06:37.141+01:00 DEBUG 17793 --- [http-nio-7777-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2023-02-08T13:06:37.141+01:00 DEBUG 17793 --- [http-nio-7777-exec-7] o.s.web.servlet.DispatcherServlet        : GET "/get/tictactoe", parameters={}
+2023-02-08T13:06:37.141+01:00 DEBUG 17793 --- [http-nio-7777-exec-7] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2023-02-08T13:06:37.141+01:00 DEBUG 17793 --- [http-nio-7777-exec-7] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2023-02-08T13:06:37.142+01:00 DEBUG 17793 --- [http-nio-7777-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2023-02-08T13:06:37.142+01:00 DEBUG 17793 --- [http-nio-7777-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-02-08T13:08:13.655+01:00 DEBUG 17793 --- [http-nio-7777-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2023-02-08T13:08:13.659+01:00 DEBUG 17793 --- [http-nio-7777-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2023-02-08T13:08:13.659+01:00 DEBUG 17793 --- [http-nio-7777-exec-10] o.s.web.servlet.DispatcherServlet        : GET "/get/tictactoe", parameters={}
+2023-02-08T13:08:13.659+01:00 DEBUG 17793 --- [http-nio-7777-exec-10] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]
+2023-02-08T13:08:13.660+01:00 DEBUG 17793 --- [http-nio-7777-exec-10] o.s.w.s.r.ResourceHttpRequestHandler     : Resource not found
+2023-02-08T13:08:13.660+01:00 DEBUG 17793 --- [http-nio-7777-exec-10] o.s.web.servlet.DispatcherServlet        : Completed 404 NOT_FOUND
+2023-02-08T13:08:13.660+01:00 DEBUG 17793 --- [http-nio-7777-exec-10] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2023-02-08T13:09:04.430+01:00 DEBUG 17793 --- [http-nio-7777-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#pushStat(UUID)
+2023-02-08T13:09:04.434+01:00 DEBUG 17793 --- [http-nio-7777-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#pushStat(UUID)
+2023-02-08T13:09:04.434+01:00 DEBUG 17793 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : POST "/pushstat/8f342380-485c-456e-91a7-4d58fe356624", parameters={}
+2023-02-08T13:09:04.434+01:00 DEBUG 17793 --- [http-nio-7777-exec-2] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#pushStat(UUID)
+2023-02-08T13:09:04.440+01:00  WARN 17793 --- [http-nio-7777-exec-2] com.example.demo.entities.GameEntity     : Message de niveau WARN
+2023-02-08T13:09:04.440+01:00 ERROR 17793 --- [http-nio-7777-exec-2] com.example.demo.entities.GameEntity     : Message de niveau WARN
+2023-02-08T13:09:04.443+01:00 DEBUG 17793 --- [http-nio-7777-exec-2] o.s.web.client.RestTemplate              : HTTP POST http://localhost:6666/push/8f342380-485c-456e-91a7-4d58fe356624
+2023-02-08T13:09:04.443+01:00 DEBUG 17793 --- [http-nio-7777-exec-2] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
+2023-02-08T13:09:04.444+01:00 DEBUG 17793 --- [http-nio-7777-exec-2] o.s.web.client.RestTemplate              : Writing [com.example.demo.dto.GameStatDTO@7f573d53] with org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+2023-02-08T13:09:04.647+01:00 DEBUG 17793 --- [http-nio-7777-exec-2] o.s.web.client.RestTemplate              : Response 200 OK
+2023-02-08T13:09:04.647+01:00 DEBUG 17793 --- [http-nio-7777-exec-2] o.s.web.client.RestTemplate              : Reading to [com.example.demo.dto.GameStatResponseDTO]
+2023-02-08T13:09:04.649+01:00 DEBUG 17793 --- [http-nio-7777-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-02-08T13:09:04.649+01:00 DEBUG 17793 --- [http-nio-7777-exec-2] m.m.a.RequestResponseBodyMethodProcessor : Writing [com.example.demo.dto.GameStatResponseDTO@6dc96377]
+2023-02-08T13:09:04.649+01:00 DEBUG 17793 --- [http-nio-7777-exec-2] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-02-08T13:09:46.481+01:00  WARN 20889 --- [main] org.hibernate.orm.deprecation            : HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+2023-02-08T13:09:47.696+01:00 DEBUG 20889 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : 10 mappings in 'requestMappingHandlerMapping'
+2023-02-08T13:09:47.720+01:00 DEBUG 20889 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2023-02-08T13:09:47.778+01:00 DEBUG 20889 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2023-02-08T13:09:47.806+01:00 DEBUG 20889 --- [main] .m.m.a.ExceptionHandlerExceptionResolver : ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2023-02-08T13:09:54.344+01:00  INFO 20889 --- [http-nio-7777-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-02-08T13:09:54.345+01:00 DEBUG 20889 --- [http-nio-7777-exec-1] o.s.web.servlet.DispatcherServlet        : Detected StandardServletMultipartResolver
+2023-02-08T13:09:54.345+01:00 DEBUG 20889 --- [http-nio-7777-exec-1] o.s.web.servlet.DispatcherServlet        : Detected AcceptHeaderLocaleResolver
+2023-02-08T13:09:54.345+01:00 DEBUG 20889 --- [http-nio-7777-exec-1] o.s.web.servlet.DispatcherServlet        : Detected FixedThemeResolver
+2023-02-08T13:09:54.346+01:00 DEBUG 20889 --- [http-nio-7777-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@5f910283
+2023-02-08T13:09:54.346+01:00 DEBUG 20889 --- [http-nio-7777-exec-1] o.s.web.servlet.DispatcherServlet        : Detected org.springframework.web.servlet.support.SessionFlashMapManager@56adb75e
+2023-02-08T13:09:54.347+01:00 DEBUG 20889 --- [http-nio-7777-exec-1] o.s.web.servlet.DispatcherServlet        : enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2023-02-08T13:09:54.347+01:00  INFO 20889 --- [http-nio-7777-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-02-08T13:09:54.366+01:00 DEBUG 20889 --- [http-nio-7777-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#getStat(String)
+2023-02-08T13:09:54.512+01:00 DEBUG 20889 --- [http-nio-7777-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#getStat(String)
+2023-02-08T13:09:54.514+01:00 DEBUG 20889 --- [http-nio-7777-exec-1] o.s.web.servlet.DispatcherServlet        : GET "/get/tictactoe", parameters={}
+2023-02-08T13:09:54.515+01:00 DEBUG 20889 --- [http-nio-7777-exec-1] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#getStat(String)
+2023-02-08T13:09:54.538+01:00 DEBUG 20889 --- [http-nio-7777-exec-1] o.s.web.client.RestTemplate              : HTTP GET http://localhost:6666/get/tictactoe
+2023-02-08T13:09:54.567+01:00 DEBUG 20889 --- [http-nio-7777-exec-1] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
+2023-02-08T13:09:54.592+01:00 DEBUG 20889 --- [http-nio-7777-exec-1] o.s.web.client.RestTemplate              : Response 200 OK
+2023-02-08T13:09:54.594+01:00 DEBUG 20889 --- [http-nio-7777-exec-1] o.s.web.client.RestTemplate              : Reading to [com.example.demo.dto.GameStatResponseDTO]
+2023-02-08T13:09:54.653+01:00 DEBUG 20889 --- [http-nio-7777-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-02-08T13:09:54.656+01:00 DEBUG 20889 --- [http-nio-7777-exec-1] m.m.a.RequestResponseBodyMethodProcessor : Writing [com.example.demo.dto.GameStatResponseDTO@78482100]
+2023-02-08T13:09:54.677+01:00 DEBUG 20889 --- [http-nio-7777-exec-1] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-02-08T13:10:00.116+01:00 DEBUG 20889 --- [http-nio-7777-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#getStat(String)
+2023-02-08T13:10:00.120+01:00 DEBUG 20889 --- [http-nio-7777-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#getStat(String)
+2023-02-08T13:10:00.120+01:00 DEBUG 20889 --- [http-nio-7777-exec-3] o.s.web.servlet.DispatcherServlet        : GET "/get/tictactoe", parameters={}
+2023-02-08T13:10:00.120+01:00 DEBUG 20889 --- [http-nio-7777-exec-3] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#getStat(String)
+2023-02-08T13:10:00.121+01:00 DEBUG 20889 --- [http-nio-7777-exec-3] o.s.web.client.RestTemplate              : HTTP GET http://localhost:6666/get/tictactoe
+2023-02-08T13:10:00.122+01:00 DEBUG 20889 --- [http-nio-7777-exec-3] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
+2023-02-08T13:10:00.132+01:00 DEBUG 20889 --- [http-nio-7777-exec-3] o.s.web.client.RestTemplate              : Response 200 OK
+2023-02-08T13:10:00.132+01:00 DEBUG 20889 --- [http-nio-7777-exec-3] o.s.web.client.RestTemplate              : Reading to [com.example.demo.dto.GameStatResponseDTO]
+2023-02-08T13:10:00.133+01:00 DEBUG 20889 --- [http-nio-7777-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-02-08T13:10:00.133+01:00 DEBUG 20889 --- [http-nio-7777-exec-3] m.m.a.RequestResponseBodyMethodProcessor : Writing [com.example.demo.dto.GameStatResponseDTO@6e7c7b6a]
+2023-02-08T13:10:00.133+01:00 DEBUG 20889 --- [http-nio-7777-exec-3] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-02-08T13:10:00.954+01:00 DEBUG 20889 --- [http-nio-7777-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#getStat(String)
+2023-02-08T13:10:00.960+01:00 DEBUG 20889 --- [http-nio-7777-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#getStat(String)
+2023-02-08T13:10:00.960+01:00 DEBUG 20889 --- [http-nio-7777-exec-4] o.s.web.servlet.DispatcherServlet        : GET "/get/tictactoe", parameters={}
+2023-02-08T13:10:00.960+01:00 DEBUG 20889 --- [http-nio-7777-exec-4] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#getStat(String)
+2023-02-08T13:10:00.961+01:00 DEBUG 20889 --- [http-nio-7777-exec-4] o.s.web.client.RestTemplate              : HTTP GET http://localhost:6666/get/tictactoe
+2023-02-08T13:10:00.962+01:00 DEBUG 20889 --- [http-nio-7777-exec-4] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
+2023-02-08T13:10:00.967+01:00 DEBUG 20889 --- [http-nio-7777-exec-4] o.s.web.client.RestTemplate              : Response 200 OK
+2023-02-08T13:10:00.967+01:00 DEBUG 20889 --- [http-nio-7777-exec-4] o.s.web.client.RestTemplate              : Reading to [com.example.demo.dto.GameStatResponseDTO]
+2023-02-08T13:10:00.968+01:00 DEBUG 20889 --- [http-nio-7777-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-02-08T13:10:00.968+01:00 DEBUG 20889 --- [http-nio-7777-exec-4] m.m.a.RequestResponseBodyMethodProcessor : Writing [com.example.demo.dto.GameStatResponseDTO@470f4d08]
+2023-02-08T13:10:00.968+01:00 DEBUG 20889 --- [http-nio-7777-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-02-08T13:11:19.823+01:00 DEBUG 20889 --- [http-nio-7777-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#createGame(GameCreationParams)
+2023-02-08T13:11:19.827+01:00 DEBUG 20889 --- [http-nio-7777-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#createGame(GameCreationParams)
+2023-02-08T13:11:19.827+01:00 DEBUG 20889 --- [http-nio-7777-exec-7] o.s.web.servlet.DispatcherServlet        : POST "/games", parameters={}
+2023-02-08T13:11:19.827+01:00 DEBUG 20889 --- [http-nio-7777-exec-7] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#createGame(GameCreationParams)
+2023-02-08T13:11:19.837+01:00 DEBUG 20889 --- [http-nio-7777-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Read "application/json;charset=UTF-8" to [GameCreationParams[typeOfGame=connect4, playerCount=0, boardSize=0]]
+2023-02-08T13:11:19.895+01:00 DEBUG 20889 --- [http-nio-7777-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-02-08T13:11:19.895+01:00 DEBUG 20889 --- [http-nio-7777-exec-7] m.m.a.RequestResponseBodyMethodProcessor : Writing [com.example.demo.dto.GameDTO@7ae8bdc6]
+2023-02-08T13:11:19.910+01:00 DEBUG 20889 --- [http-nio-7777-exec-7] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2023-02-08T13:11:34.722+01:00 DEBUG 20889 --- [http-nio-7777-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#pushStat(UUID)
+2023-02-08T13:11:34.726+01:00 DEBUG 20889 --- [http-nio-7777-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#pushStat(UUID)
+2023-02-08T13:11:34.726+01:00 DEBUG 20889 --- [http-nio-7777-exec-8] o.s.web.servlet.DispatcherServlet        : POST "/pushstat/73021f07-1714-4065-bae1-167e999ee50e", parameters={}
+2023-02-08T13:11:34.726+01:00 DEBUG 20889 --- [http-nio-7777-exec-8] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped to com.example.demo.controller.GameController#pushStat(UUID)
+2023-02-08T13:11:34.740+01:00  WARN 20889 --- [http-nio-7777-exec-8] com.example.demo.entities.GameEntity     : Message de niveau WARN
+2023-02-08T13:11:34.740+01:00 ERROR 20889 --- [http-nio-7777-exec-8] com.example.demo.entities.GameEntity     : Message de niveau WARN
+2023-02-08T13:11:34.744+01:00 DEBUG 20889 --- [http-nio-7777-exec-8] o.s.web.client.RestTemplate              : HTTP POST http://localhost:6666/push/73021f07-1714-4065-bae1-167e999ee50e
+2023-02-08T13:11:34.745+01:00 DEBUG 20889 --- [http-nio-7777-exec-8] o.s.web.client.RestTemplate              : Accept=[application/json, application/*+json]
+2023-02-08T13:11:34.746+01:00 DEBUG 20889 --- [http-nio-7777-exec-8] o.s.web.client.RestTemplate              : Writing [com.example.demo.dto.GameStatDTO@eca3dea] with org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
+2023-02-08T13:11:34.758+01:00 DEBUG 20889 --- [http-nio-7777-exec-8] o.s.web.client.RestTemplate              : Response 200 OK
+2023-02-08T13:11:34.758+01:00 DEBUG 20889 --- [http-nio-7777-exec-8] o.s.web.client.RestTemplate              : Reading to [com.example.demo.dto.GameStatResponseDTO]
+2023-02-08T13:11:34.760+01:00 DEBUG 20889 --- [http-nio-7777-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2023-02-08T13:11:34.760+01:00 DEBUG 20889 --- [http-nio-7777-exec-8] m.m.a.RequestResponseBodyMethodProcessor : Writing [com.example.demo.dto.GameStatResponseDTO@67747069]
+2023-02-08T13:11:34.761+01:00 DEBUG 20889 --- [http-nio-7777-exec-8] o.s.web.servlet.DispatcherServlet        : Completed 200 OK

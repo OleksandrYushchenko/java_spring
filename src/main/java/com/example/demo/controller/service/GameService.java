@@ -1,6 +1,6 @@
-package com.example.demo.controller;
+package com.example.demo.controller.service;
 
-import com.example.demo.DTO.GameDTO;
+import com.example.demo.dto.GameDTO;
 import com.example.demo.params.GameCreationParams;
 import com.example.demo.params.MoveParams;
 import fr.le_campus_numerique.square_games.engine.InconsistentGameDefinitionException;
@@ -20,4 +20,5 @@ public interface GameService {
     List<Map> getListOfGames();
     GameDTO makeMove(@PathVariable UUID gameId, MoveParams params) throws InvalidPositionException, InconsistentGameDefinitionException;
     String deleteGame(@PathVariable UUID gameId);
+    Object pushStat(GameDTO game);
 }

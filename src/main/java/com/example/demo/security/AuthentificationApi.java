@@ -1,6 +1,6 @@
 package com.example.demo.security;
 
-import com.example.demo.DTO.UserDTO;
+import com.example.demo.dto.UserDTO;
 import com.example.demo.entities.UserEntity;
 import com.example.demo.params.AuthentificationRequest;
 import io.jsonwebtoken.Jwts;

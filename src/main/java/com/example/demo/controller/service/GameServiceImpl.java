@@ -1,7 +1,7 @@
-package com.example.demo.controller;
+package com.example.demo.controller.service;
 
-import com.example.demo.DAO.AccessingDataJpa;
-import com.example.demo.DTO.*;
+import com.example.demo.dao.AccessingDataJpa;
+import com.example.demo.dto.*;
 import com.example.demo.entities.GameEntity;
 import com.example.demo.entities.PlayerEntity;
 import com.example.demo.entities.TokensEntity;
@@ -19,12 +19,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
 
 
 @Service
-public class GameServiceImpl implements GameService{
+public class GameServiceImpl implements GameService {
     private static Logger LOGGER = LoggerFactory.getLogger(GameServiceImpl.class);
     @Autowired
     private AccessingDataJpa accessingDataJpaPlayers;
@@ -38,6 +39,7 @@ public class GameServiceImpl implements GameService{
     private HttpServletRequest request;
     @Autowired
     private List<GamePlugin> gamePlugins;
+    private int count = 0;
     @Override
     public GameDTO getGame(@PathVariable UUID gameId) throws InconsistentGameDefinitionException {
         GamePlugin gamePlugin = gamePlugins.stream()
@@ -45,7 +47,7 @@ public class GameServiceImpl implements GameService{
                 .findFirst()
                 .orElse(null);
         GameFactory gameFactory = Objects.requireNonNull(gamePlugin).getGameFactory();
-        fr.le_campus_numerique.square_games.engine.Game game = gameFactory.createGame(
+        fr.le_campus_numerique.square_games.engine.Game game = gameFactory.createGameWithPredefinedPlayerIds(
                         accessingDataJpaPlayers.getBoardSize(gameId),
                         accessingDataJpaPlayers.getPlayersList(gameId),
                         accessingDataJpaPlayers.getBoardTokens(gameId) ,
@@ -114,12 +116,20 @@ public class GameServiceImpl implements GameService{
         return gameDTO;
     }
     public GameDTO makeMove(@PathVariable UUID gameId, MoveParams params) throws InvalidPositionException, InconsistentGameDefinitionException {
+
+        UUID owner;
         GameDTO game;
         game = getGame(gameId);
-        UUID owner = game.getGame().getRemainingTokens().stream().findFirst().get().getOwnerId().get();
+        if (count == 0) {
+            owner = game.getGame().getRemainingTokens().stream().findFirst().get().getOwnerId().get();
+            count++;
+        } else {
+            owner = game.getGame().getRemainingTokens().stream().reduce((first, second) -> second).get().getOwnerId().get();
+            count = 0;
+        }
+        game.getGame().getRemainingTokens().stream().findFirst().get().moveTo(params.position());
         String tokenName = game.getGame().getRemainingTokens().stream().findFirst().get().getName();
         // TODO - add row to table "moves"
-        game.getGame().getRemainingTokens().stream().findFirst().get().moveTo(params.position());
         System.out.println(accessingDataJpaPlayers.getPlayersList(gameId));
         // TODO - save token
         tokensRepository.save(new TokensEntity(
@@ -129,11 +139,21 @@ public class GameServiceImpl implements GameService{
                 params.position().x(),
                 params.position().y()
         ));
+
         return game;
     }
     @Override
     public String deleteGame(UUID gameId) {
+        playersRepository.removeByGameId(gameId);
         gameRepository.removeByGameId(gameId);
         return "Game " + gameId + "where deleted";
+    }
+
+    @Override
+    public GameStatResponseDTO pushStat(GameDTO game) {
+        GameStatDTO gameStatDTO = new GameStatDTO(game);
+        String url = "http://localhost:6666/push/" + game.getGameId().toString();
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.postForEntity(url, gameStatDTO, GameStatResponseDTO.class).getBody();
     }
 }

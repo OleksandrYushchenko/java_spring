@@ -1,7 +1,6 @@
-package com.example.demo.DTO;
+package com.example.demo.dto;
 
 import com.example.demo.entities.GameEntity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.le_campus_numerique.square_games.engine.CellPosition;
 import fr.le_campus_numerique.square_games.engine.Token;
 
@@ -18,7 +17,7 @@ public class GameDTO {
     private final UUID playerA;
     private final UUID playerB;
     private final String name;
-    @JsonIgnore
+//    @JsonIgnore
     private fr.le_campus_numerique.square_games.engine.Game game;
 
     public GameDTO(GameEntity game, fr.le_campus_numerique.square_games.engine.Game gameEng){
