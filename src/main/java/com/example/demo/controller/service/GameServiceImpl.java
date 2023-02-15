@@ -23,7 +23,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
 
-
 @Service
 public class GameServiceImpl implements GameService {
     private static Logger LOGGER = LoggerFactory.getLogger(GameServiceImpl.class);
@@ -116,7 +115,6 @@ public class GameServiceImpl implements GameService {
         return gameDTO;
     }
     public GameDTO makeMove(@PathVariable UUID gameId, MoveParams params) throws InvalidPositionException, InconsistentGameDefinitionException {
-
         UUID owner;
         GameDTO game;
         game = getGame(gameId);
@@ -130,7 +128,6 @@ public class GameServiceImpl implements GameService {
         game.getGame().getRemainingTokens().stream().findFirst().get().moveTo(params.position());
         String tokenName = game.getGame().getRemainingTokens().stream().findFirst().get().getName();
         // TODO - add row to table "moves"
-        System.out.println(accessingDataJpaPlayers.getPlayersList(gameId));
         // TODO - save token
         tokensRepository.save(new TokensEntity(
                 gameId,
@@ -148,7 +145,6 @@ public class GameServiceImpl implements GameService {
         gameRepository.removeByGameId(gameId);
         return "Game " + gameId + "where deleted";
     }
-
     @Override
     public GameStatResponseDTO pushStat(GameDTO game) {
         GameStatDTO gameStatDTO = new GameStatDTO(game);
